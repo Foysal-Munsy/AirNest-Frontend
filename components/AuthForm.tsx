@@ -1,4 +1,4 @@
-import { registrationSchema } from "@/lib/auth.schema";
+import { loginSchema, registrationSchema } from "@/lib/auth.schema";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -52,7 +52,16 @@ export default function AuthForm({ ...props }) {
         }
       }
     } else {
-      console.log("It's a login page");
+      // console.log("It's a login page");
+      const parsed = loginSchema.safeParse(data);
+
+      if (!parsed.success) {
+        const firstIssue = parsed.error.issues[0];
+        const message = firstIssue?.message ?? "Invalid input";
+        toast.error(message);
+        return;
+      }
+
       try {
         //
         const userData = {
