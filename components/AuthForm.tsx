@@ -1,15 +1,28 @@
+import { registrationSchema } from "@/lib/auth.schema";
 import axios from "axios";
-
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { FormEvent } from "react";
 import { toast } from "react-toastify";
 
 export default function AuthForm({ ...props }) {
+  const router = useRouter();
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const data = Object.fromEntries(formData);
-    console.log(data);
+
+    // console.log(data);
     if (props.page === "registration") {
+      const parsed = registrationSchema.safeParse(data);
+
+      if (!parsed.success) {
+        const firstIssue = parsed.error.issues[0];
+        const message = firstIssue?.message ?? "Invalid input";
+        toast.error(message);
+        return;
+      }
+
       try {
         const userData = {
           username: data.username,
@@ -27,11 +40,15 @@ export default function AuthForm({ ...props }) {
           }
         );
 
-        toast.success(`Signup Success ${response.data.fullname}`);
-        // window.location.href = "/login/admin";
+        toast.success(
+          `Signup Success ${response.data.fullname}. You can login now!`
+        );
+        router.push("/login/admin");
       } catch (error: unknown) {
         if (axios.isAxiosError(error)) {
           toast.error(error.response?.data?.message);
+        } else {
+          toast.error("Signup failed");
         }
       }
     } else {
@@ -52,8 +69,8 @@ export default function AuthForm({ ...props }) {
           }
         );
         toast.success("Login Successful", response);
-        window.location.href = "/dashboard";
-        // window.location.href = "/login/admin";
+
+        router.push("/dashboard");
       } catch (error: unknown) {
         if (axios.isAxiosError(error)) {
           toast.error(error.response?.data?.message);
@@ -96,7 +113,7 @@ export default function AuthForm({ ...props }) {
 
                   <label className="label">Email</label>
                   <input
-                    type="email"
+                    type="text"
                     className="input"
                     placeholder="Email"
                     name="email"
@@ -115,6 +132,24 @@ export default function AuthForm({ ...props }) {
               <button className="btn btn-neutral mt-4">
                 {props.page === "registration" ? "Create account" : "Login"}
               </button>
+
+              {/* paragraph under the button */}
+
+              {props.page === "registration" ? (
+                <div className="mt-4 flex items-center justify-between text-sm">
+                  <p className="text-gray-500">Have an account?</p>
+                  <Link href="/login/admin" className="link link-primary">
+                    Login
+                  </Link>
+                </div>
+              ) : (
+                <div className="mt-4 flex items-center justify-between text-sm">
+                  <p className="text-gray-500">Don&apos;t have an account?</p>
+                  <Link href="/registration" className="link link-primary">
+                    Registration
+                  </Link>
+                </div>
+              )}
             </form>
           </div>
         </div>

@@ -49,9 +49,6 @@ export default function Nav() {
         </ul>
       </div>
       <div className="navbar-end gap-2">
-        <Link href={`/login/${role}`} className="btn">
-          Login
-        </Link>
         <Link href={"/registration"} className="btn">
           Register
         </Link>
