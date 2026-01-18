@@ -21,7 +21,7 @@ type User = {
   created_at: string;
 };
 
-export default function AllUsers() {
+export default function Users() {
   const [data, setData] = useState<User[]>([]);
   useEffect(() => {
     async function getUser() {
@@ -39,11 +39,11 @@ export default function AllUsers() {
   }, []);
 
   return (
-    <div>
+    <div className="flex-1 px-4 py-6">
       {data.length === 0 ? (
         <Spinner className="size-6" />
       ) : (
-        <Table className="pl-3">
+        <Table>
           <TableHeader className="bg-blue-50/50 text-lg border">
             <TableRow>
               <TableHead>User</TableHead>

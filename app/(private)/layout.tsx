@@ -10,8 +10,10 @@ export default function PrivateLayout({
     <>
       <SidebarProvider>
         <AppSidebar />
-        <main>
-          <SidebarTrigger />
+        <main className="flex min-h-svh flex-1 flex-col">
+          <div className="border-b bg-background/80 px-4 py-3 backdrop-blur supports-backdrop-filter:bg-background/60">
+            <SidebarTrigger />
+          </div>
           {children}
         </main>
       </SidebarProvider>

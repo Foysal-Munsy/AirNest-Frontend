@@ -20,7 +20,7 @@ const items = [
   },
   {
     title: "All Users",
-    url: "all-users",
+    url: "users",
     icon: Inbox,
   },
   {
@@ -34,8 +34,8 @@ const items = [
     icon: Search,
   },
   {
-    title: "Settings",
-    url: "#",
+    title: "Dashboard",
+    url: "dashboard",
     icon: Settings,
   },
 ];
