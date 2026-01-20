@@ -1,20 +1,17 @@
-import Hero from "@/components/hero";
-import Link from "next/link";
+import Footer from "@/components/Footer";
+import Hero from "@/components/Hero";
+import BookUniqueHomes from "@/components/book-unique-homes";
+import NaturesHideaway from "@/components/natures-hideaway";
+import Nav from "@/components/Nav";
 
 export default function Home() {
   return (
     <section>
-      <div className="navbar bg-base-100 shadow-sm">
-        <div className="flex-1">
-          <a className="btn btn-ghost text-xl">Airnest</a>
-        </div>
-        <div className="flex-none">
-          <Link href="/login">
-            <button className="btn btn-primary">Login</button>
-          </Link>
-        </div>
-      </div>
+      <Nav />
       <Hero />
+      <BookUniqueHomes />
+      <NaturesHideaway />
+      <Footer />
     </section>
   );
 }

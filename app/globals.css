@@ -1,6 +1,48 @@
 @import "tailwindcss";
 @plugin "daisyui" {
-  themes: light --default;
+  themes: custom-theme --default;
+}
+@plugin "daisyui/theme" {
+  name: "custom-theme";
+  default: true;
+  prefersdark: false;
+  color-scheme: light;
+
+  --color-base-100: var(--color-white);
+  --color-base-200: var(--color-violet-50);
+  --color-base-300: var(--color-violet-200);
+  --color-base-content: var(--color-slate-900);
+
+  --color-primary: var(--color-violet-500);
+  --color-primary-content: var(--color-white);
+
+  --color-secondary: var(--color-violet-50);
+  --color-secondary-content: var(--color-violet-900);
+
+  --color-accent: var(--color-emerald-500);
+  --color-accent-content: var(--color-white);
+
+  --color-neutral: var(--color-slate-800);
+  --color-neutral-content: var(--color-white);
+
+  --color-info: var(--color-sky-600);
+  --color-info-content: var(--color-white);
+  --color-success: var(--color-green-600);
+  --color-success-content: var(--color-white);
+  --color-warning: var(--color-amber-500);
+  --color-warning-content: var(--color-white);
+  --color-error: var(--color-rose-600);
+  --color-error-content: var(--color-white);
+
+  --radius-selector: 1rem;
+  --radius-field: 0.5rem;
+  --radius-box: 0.5rem;
+
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 0;
 }
 
 @theme inline {
@@ -11,3 +53,7 @@
 body {
   font-family: Geist, Arial, Helvetica, sans-serif;
 }
+
+/* .table-zebra tbody tr:nth-child(even) {
+  background-color: var(--color-violet-50);
+} */

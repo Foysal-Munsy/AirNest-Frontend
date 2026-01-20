@@ -9,10 +9,12 @@ export default function Hero() {
       <div className="hero-overlay"></div>
       <div className="hero-content text-neutral-content text-center">
         <div className="max-w-md">
-          <h1 className="mb-5 text-5xl font-bold">Airnest</h1>
+          <h1 className="mb-5 text-5xl font-bold">airNest</h1>
           <p className="mb-5">
-            Book your next adventure. Unforgettable stays and experiences
-            await.
+            Discover unique homes and experiences around the world. Whether you
+            are looking for a cozy apartment, a luxurious villa, or an
+            unforgettable stay, Air Nest connects you with the perfect place to
+            call home.
           </p>
           <button className="btn btn-primary">Get Started</button>
         </div>
