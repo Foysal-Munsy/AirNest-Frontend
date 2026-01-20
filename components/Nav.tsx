@@ -1,7 +1,6 @@
 import Link from "next/link";
 
 export default function Nav() {
-  const role = "admin";
   return (
     <div className="navbar bg-base-100 shadow-sm">
       <div className="navbar-start">
